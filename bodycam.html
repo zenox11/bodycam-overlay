@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- AUTHOR: https://github.com/zenox11 -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Axon Body 3 - Bodycam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @keyframes kropka {
+            0% {opacity: 80%;}
+            50% {opacity: 30%;}
+            100% {opacity: 80%;}
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .ramka {
+            height: 130px;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-left: 15px;
+            padding-right: 10px;
+            color: #ffffff;
+            border-radius: 10px;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-weight: 400;
+        }
+        #logo {
+            height: 120px;
+            width: 120px;
+        }
+        .linia1, .linia2, .linia3, .linia4 {
+            display: block;
+            text-align: right;
+        }
+        .linia1 {
+            font-weight: 500;
+        }
+        #kropka {
+            display: inline-block;
+            animation-name: kropka;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+        .informacje {
+            float: left;
+            margin-top: 20px;
+        }
+        img {
+            float: left;
+        }
+        #dzien, #miesiac, #rok, #godzina {
+            display: inline-block;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="ramka">
+    <div class="informacje">
+        <div class="linia1">REC <div id="kropka">🔴</div> AXON BODY 3</div>
+        <div class="linia2">[271] Larry Smith</div>
+        <div class="linia3">LOS SANTOS SHERIFF DEPARTMENT</div>
+        <div class="linia4"><div id="dzien"></div> <div id="miesiac"></div> <div id="rok"></div>  <div id="godzina"></div>
+        </div>
+    </div>
+    <img src="https://i.imgur.com/AokuZ59.png" alt="WYSTĄPIŁ BŁĄD" id="logo">
+
+
+    <script>
+        setInterval(function() {
+            var d = new Date();
+
+            //DZIEN
+            let dzien = d.getDate();
+            if (dzien < 10) {
+                dzien = "0" + dzien;
+            }
+
+            //MIESIAC
+            let miesiace = new Array();
+            miesiace[0] = "JAN";
+            miesiace[1] = "FEB";
+            miesiace[2] = "MAR";
+            miesiace[3] = "APR";
+            miesiace[4] = "MAY";
+            miesiace[5] = "JUN";
+            miesiace[6] = "JUL";
+            miesiace[7] = "AUG";
+            miesiace[8] = "SEP";
+            miesiace[9] = "OCT";
+            miesiace[10] = "NOV";
+            miesiace[11] = "DEC";
+            let miesiac = miesiace[d.getMonth()];
+
+            //ROK
+            let rok = d.getFullYear();
+
+            //GODZINA
+            let godzina = d.getHours();
+            if (godzina < 10) {
+                godzina = "0" + godzina;
+            }
+
+            //MINUTA
+            let minuta = d.getMinutes();
+            if (minuta < 10) {
+                minuta = "0" + minuta;
+            }
+
+            //SEKUNDA
+            let sekunda = d.getSeconds();
+            if (sekunda < 10) {
+                sekunda = "0" + sekunda;
+            }
+
+            //PRINT
+            console.log("dzien: " + dzien);
+            console.log("miesiac: " + miesiac);
+            console.log("rok: " + rok);
+            console.log("godzina: " + godzina + ":" + minuta + ":" + sekunda);
+            document.getElementById("godzina").innerHTML = godzina + ":" + minuta + ":" + sekunda;
+
+            //UPDATE
+            document.getElementById("dzien").innerHTML = dzien;
+            document.getElementById("miesiac").innerHTML = miesiac;
+            document.getElementById("rok").innerHTML = rok;
+            document.getElementById("godzina").innerHTML = godzina + ":" + minuta + ":" + sekunda;
+        }, 1000);
+    </script>
+</div>
+</body>
+</html>
